@@ -20,13 +20,13 @@ router.get('/', (req, res) => {
       }
     ]
   })
-  .then(data => {
-    res.json(data);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 });
 
 // get one product
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
       id: req.params.id
-    }, 
+    },
     include: [
       {
         model: Category,
@@ -49,18 +49,18 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
-  .then(data => {
-    if (!data) {
-      // status code 404: client error, resource was not found
-      res.status(404).json({message: 'Product with this id was not found.'});
-      return;
-    }
-    res.json(data);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  })
+    .then(data => {
+      if (!data) {
+        // status code 404: client error, resource was not found
+        res.status(404).json({ message: 'Product with this id was not found.' });
+        return;
+      }
+      res.json(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 });
 
 // create new product
@@ -144,18 +144,18 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-  .then(data => {
-    if (!data) {
-      // status code 404: client error, resource was not found
-      res.status(404).json({message: 'Cannot delete. Product with this id was not found.'});
-      return;
-    }
-    res.json(data);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  })
+    .then(data => {
+      if (!data) {
+        // status code 404: client error, resource was not found
+        res.status(404).json({ message: 'Cannot delete. Product with this id was not found.' });
+        return;
+      }
+      res.json(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 });
 
 module.exports = router;
